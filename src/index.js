@@ -1,34 +1,33 @@
 import './css/b5.css';
 import './css/main.css';
+
 //Texto de HTML
 const texto = document.getElementById("texto");
 const contarP = document.getElementById("contarP");
 const borrar = document.getElementById("borrar");
-//Ver que no vaya vacio
-texto==="" ? "Ingresatextovalido":reglas()
 
 //Reglas
 const reglas = (texto) =>{
     //Unificarlo
-    const textoU = texto.value.toUpperCase();
+    const textoU = texto.toUpperCase();
 
     //Cortamos cada espacio
-    textoU.split("")
+    const textoU1= textoU.split("")
 
-    //C
+    //Set para contar lo duplicado
+    const noRepetidas = new Set(textoU1);
     
-        
     //Replace para lo repetido,
-
+    //Las palabras repetidas se sustituyen con una etiqueta de color
 }
 
+ contarP.addEventListener("click", () => { 
+    //Ver que no vaya vacio
+    //Si es vacio retotna una alerta, en caso contrario se llama la función
+    texto.value.trim() === "" ? alert("Ingresa texto") : reglas(texto);
+ });
 
-contarP.addEventListener("click", () => { 
-    //Llamamos la función
-    reglas()
-});
-
-//borrar
+//Borrar
 borrar.addEventListener("click", () => {
     texto.value = "";
     respuesta.textContent = "";
