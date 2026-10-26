@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "plantilla basado en ES",
   "license": "MIT",
-  "homepage": "https://Adalyyy.github.io/TraductorMorse-Texto",
+  "homepage": "https://github.com/Adalyyy/buscadorPalabras",
   "author": "Adaly",
   "main": "index.js",
   "scripts": {
