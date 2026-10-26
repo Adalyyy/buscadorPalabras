@@ -3,32 +3,50 @@ import './css/main.css';
 
 //Texto de HTML
 const texto = document.getElementById("texto");
+const palabra = document.getElementById("palabra");
 const contarP = document.getElementById("contarP");
 const borrar = document.getElementById("borrar");
+const respuesta = document.getElementById("respuesta");
 
 //Reglas
 const reglas = (texto) =>{
     //Unificarlo
-    const textoU = texto.toUpperCase();
+    const textoU = texto.value.toUpperCase();
+    const palabraU = palabra.value.toUpperCase();
 
     //Cortamos cada espacio
-    const textoU1= textoU.split("")
-
-    //Set para contar lo duplicado
-    const noRepetidas = new Set(textoU1);
+    const textoU1= textoU.split(" ")
     
-    //Replace para lo repetido,
-    //Las palabras repetidas se sustituyen con una etiqueta de color
+    // Buscamos la palabra
+        const palabraE = textoU1.find((p) => p === palabraU);
+
+    if (palabraE) {
+
+        const veces = textoU1.filter((p) => p === palabraU).length;
+        const textoMarcado = textoU.split(palabraU).join(
+            `<mark>${palabraU}</mark>`
+        );
+
+        respuesta.innerHTML =
+            `La palabra "${palabraU}" aparece ${veces} veces.
+             <br>
+             ${textoMarcado}`;
+
+    } else {
+        respuesta.textContent = "La palabra no se encuentra";
+    }
 }
 
  contarP.addEventListener("click", () => { 
     //Ver que no vaya vacio
     //Si es vacio retotna una alerta, en caso contrario se llama la función
-    texto.value.trim() === "" ? alert("Ingresa texto") : reglas(texto);
+    const validacion=texto.value.trim() === "" || palabra.value.trim() === ""
+    validacion ? alert("Ingresa texto") : reglas(texto);
  });
 
 //Borrar
 borrar.addEventListener("click", () => {
     texto.value = "";
+    palabra.value = "";
     respuesta.textContent = "";
 });
